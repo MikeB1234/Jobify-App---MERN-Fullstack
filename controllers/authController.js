@@ -1,9 +1,9 @@
-import { nextTick } from 'process'
 import User from '../models/User.js'
+import { StatusCodes } from 'http-status-codes'
 
 const register = async (req, res) => {
     const user = await User.create(req.body)
-    res.status(201).json({ user })
+    res.status(StatusCodes.OK).json({ user })
 }
 
 const login = (req, res) => {
