@@ -10,10 +10,6 @@ import jobsRouter from './routes/jobsRoutes.js'
 dotenv.config()
 const app = express()
 
-app.get('/', (req, res) => {
-    res.send('Welcome')
-})
-
 app.use(express.json())
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/jobs', jobsRouter)
