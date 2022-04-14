@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
-import { Error, Register, Landing } from './pages/index'
+import { Error, Register, Landing, ProtectedRoute } from './pages/index'
 import { AddJob, AllJobs, Profile, SharedLayout, Stats } from './pages/dashboard/index'
 
 function App() {
@@ -7,7 +7,11 @@ function App() {
     <BrowserRouter>
       <Routes>
 
-        <Route path='/' element={<SharedLayout />}>
+        <Route path='/' element={
+          <ProtectedRoute>
+            <SharedLayout />
+          </ProtectedRoute>
+        }>
           <Route index element={<Stats />} />
           <Route path='all-jobs' element={<AllJobs />} />
           <Route path='add-job' element={<AddJob />} />
