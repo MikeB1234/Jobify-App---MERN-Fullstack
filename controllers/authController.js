@@ -39,8 +39,10 @@ const login = async (req, res) => {
         throw new UnauthenticatedError('Invalid Password')
     }
     const token = user.createJWT()
+    user.password = undefined
     res.status(StatusCodes.OK).json({ user, token, location: user.location })
 }
+
 const updateUser = (req, res) => {
     res.send('Update user')
 }
