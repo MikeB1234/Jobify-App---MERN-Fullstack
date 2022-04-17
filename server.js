@@ -7,6 +7,7 @@ import morgan from 'morgan'
 import connectDB from './db/connect.js'
 import authRouter from './routes/authRoutes.js'
 import jobsRouter from './routes/jobsRoutes.js'
+import authenticateUser from './middleware/auth.js'
 
 dotenv.config()
 const app = express()
@@ -17,7 +18,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 app.use(express.json())
 app.use('/api/v1/auth', authRouter)
-app.use('/api/v1/jobs', jobsRouter)
+app.use('/api/v1/jobs', authenticateUser, jobsRouter)
 app.use(notFoundMiddleware)
 app.use(errorHandlerMiddleware)
 
