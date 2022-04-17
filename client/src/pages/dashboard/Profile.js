@@ -26,7 +26,7 @@ const Profile = () => {
                 {showAlert && <Alert />}
                 <div className='form-center'>
 
-                    <FormRow type='text' name='name' value={name}
+                    <FormRow type='text' name='name' labelText='first name' value={name}
                         handleChange={(e) => setName(e.target.value)} />
 
                     <FormRow type='text' labelText='last name' name='lastName' value={lastName}
