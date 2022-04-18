@@ -5,6 +5,8 @@ import {
     LOGIN_USER_BEGIN, LOGIN_USER_SUCCESS, LOGIN_USER_ERROR,
     TOGGLE_SIDEBAR, LOGOUT_USER,
     UPDATE_USER_BEGIN, UPDATE_USER_SUCCESS, UPDATE_USER_ERROR,
+    HANDLE_CHANGE, CLEAR_VALUES, CREATE_JOB_BEGIN,
+    CREATE_JOB_SUCCESS, CREATE_JOB_ERROR
 } from './actions'
 import reducer from './reducer'
 import axios from 'axios'
@@ -30,7 +32,7 @@ const initialState = {
     jobTypeOptions: ['Full-Time', 'Part-Time', 'Remote', 'Internship'],
     jobType: 'Full-Time',
     statusOptions: ['Interview', 'Declined', 'Pending'],
-    options: 'Pending'
+    status: 'Pending',
 }
 
 const AppContext = React.createContext()
@@ -152,8 +154,24 @@ const AppProvider = ({ children }) => {
         clearAlert()
     }
 
+    const handleChange = ({ name, value }) => {
+        dispatch({ type: HANDLE_CHANGE, payload: { name, value } })
+    }
+
+    const clearValues = () => {
+        dispatch({ type: CLEAR_VALUES })
+    }
+
+    const createJob = () => {
+        dispatch({ type: CREATE_JOB_BEGIN })
+    }
+
     return (
-        <AppContext.Provider value={{ ...state, displayAlert, registerUser, loginUser, toggleSidebar, logoutUser, updateUser }}>
+        <AppContext.Provider value={{
+            ...state, displayAlert, registerUser,
+            loginUser, toggleSidebar, logoutUser,
+            updateUser, handleChange, clearValues, createJob
+        }}>
             {children}
         </AppContext.Provider>
     )
