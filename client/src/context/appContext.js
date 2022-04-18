@@ -162,8 +162,18 @@ const AppProvider = ({ children }) => {
         dispatch({ type: CLEAR_VALUES })
     }
 
-    const createJob = () => {
+    const createJob = async () => {
         dispatch({ type: CREATE_JOB_BEGIN })
+        try {
+            const { position, company, jobLocation, jobType, status } = state
+            await authFetch.post('/jobs', { position, company, jobLocation, jobType, status })
+            dispatch({ type: CREATE_JOB_SUCCESS })
+            dispatch({ type: CLEAR_VALUES })
+        } catch (err) {
+            if (err.response.status === 401) return
+            dispatch({ type: CREATE_JOB_ERROR, payload: { msg: err.response.data.msg } })
+        }
+        clearAlert()
     }
 
     return (

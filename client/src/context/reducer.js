@@ -1,4 +1,3 @@
-import { MdPendingActions } from "react-icons/md"
 import {
     DISPLAY_ALERT, CLEAR_ALERT,
     REGISTER_USER_BEGIN, REGISTER_USER_SUCCESS, REGISTER_USER_ERROR,
@@ -135,21 +134,24 @@ const reducer = (state, action) => {
         }
     }
     if (action.type === CREATE_JOB_BEGIN) {
-        const initialState = {
-
-        }
-        return {
-            ...state,
-        }
+        return { ...state, isLoading: true }
     }
     if (action.type === CREATE_JOB_SUCCESS) {
         return {
             ...state,
+            isLoading: false,
+            showAlert: true,
+            alertType: 'success',
+            alertText: 'New Job Created'
         }
     }
     if (action.type === CREATE_JOB_ERROR) {
         return {
-            ...state
+            ...state,
+            isLoading: false,
+            showAlert: true,
+            alertType: 'danger',
+            alertText: action.payload.msg,
         }
     }
     throw new Error(`no such action : ${action.type}`)
