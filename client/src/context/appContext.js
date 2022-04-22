@@ -7,7 +7,8 @@ import {
     UPDATE_USER_BEGIN, UPDATE_USER_SUCCESS, UPDATE_USER_ERROR,
     HANDLE_CHANGE, CLEAR_VALUES, CREATE_JOB_BEGIN,
     CREATE_JOB_SUCCESS, CREATE_JOB_ERROR,
-    GET_JOBS_BEGIN, GET_JOBS_SUCCESS, SET_EDIT_JOB
+    GET_JOBS_BEGIN, GET_JOBS_SUCCESS, SET_EDIT_JOB,
+    DELETE_JOB_BEGIN
 } from './actions'
 import reducer from './reducer'
 import axios from 'axios'
@@ -205,8 +206,14 @@ const AppProvider = ({ children }) => {
         console.log('edit job')
     }
 
-    const deleteJob = (id) => {
-        console.log(`delete job : ${id}`)
+    const deleteJob = async (jobId) => {
+        dispatch({ type: DELETE_JOB_BEGIN })
+        try {
+            await authFetch.delete(`/jobs/${jobId}`)
+            getJobs()
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     return (
