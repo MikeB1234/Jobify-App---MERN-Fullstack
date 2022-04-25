@@ -10,6 +10,10 @@ import SearchContainer from './SearchContainer'
 import Job from './Job'
 import Loading from './Loading'
 import JobInfo from './JobInfo'
+import StatsContainer from './StatsContainer'
+import ChartsContainer from './ChartsContainer'
 
-
-export { Logo, FormRow, Alert, SmallSidebar, BigSidebar, Navbar, FormRowSelect, JobsContainer, SearchContainer, Job, Loading, JobInfo }
+export {
+    Logo, FormRow, Alert, SmallSidebar, BigSidebar, Navbar, FormRowSelect, JobsContainer, SearchContainer, Job, Loading, JobInfo, StatsContainer,
+    ChartsContainer
+}

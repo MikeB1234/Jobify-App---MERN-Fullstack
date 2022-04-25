@@ -68,9 +68,9 @@ const showStats = async (req, res) => {
     }, {})
 
     const defaultStats = {
-        pending: stats.pending || 0,
-        interview: stats.interview || 0,
-        declined: stats.declined || 0
+        pending: stats.Pending || 0,
+        interview: stats.Interview || 0,
+        declined: stats.Declined || 0,
     }
     let monthlyApplications = []
     res.status(StatusCodes.OK).json({ defaultStats, monthlyApplications })
